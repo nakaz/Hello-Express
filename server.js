@@ -4,7 +4,7 @@ var app = express();
 app.use(express.static('public'));
 
 app.set('view engine', 'jade');
-app.set('views');
+app.set('views', './views');
 app.get('/', function (req, res){
   res.render('index', {title: 'Hello-Express'});
 });
