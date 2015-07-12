@@ -7,16 +7,16 @@ html
     link(href="/css/styles.css", rel="stylesheet")
   body
     #header
-      h1 Hello-Express
+      h1 挨拶-エクスプレス
     #container
-      p omg!
-      button#button alert!
+      p 何ですか？！
+      button#button やった〜！
 
       #user
         if !username
           form#username(method="post" input type = "submit")
-            p Hello, what is your name?
+            p 今日は！名前のですか？
             input#name(name="username")
-            button#nameEntry Enter
+            button#nameEntry 出す
         else
           p= "Welcome" + ' ' + username + '!!'

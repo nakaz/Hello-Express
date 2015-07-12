@@ -36,8 +36,7 @@ app.get('/', function (req, res){
 });
 
 app.post('/', function (req, res){
-  var username = req.body.username;
-  req.session.username = username;
+  req.session.username = req.body.username;
   res.redirect('/');
 });
 
