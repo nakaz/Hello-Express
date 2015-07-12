@@ -1,12 +1,17 @@
 var express = require('express');
 var app = express();
 
+var bodyParser = require('body-parser');
+
+
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 
 var config = require('./config/config.json');
 
 app.use(express.static('public'));
+
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.set('view engine', 'jade');
 app.set('views', './views');
@@ -23,20 +28,18 @@ app.use(session({
 
 app.use(function (req, res, next){
   var session = req.session;
-  if (session.views) {
-    session.views += 1;
-  }else{
-    session.views = 1;
-  }
-  console.log(session.views);
-  console.log('viewed', session.views, 'times!');
   next();
 });
 
 app.get('/', function (req, res){
-  res.render('index', {title: 'Hello-Express'});
+  res.render('index', {username: req.session.username});
 });
 
+app.post('/', function (req, res){
+  var username = req.body.username;
+  req.session.username = username;
+  res.redirect('/');
+});
 
 var server = app.listen(3000, function(){
   var host = server.address().address;

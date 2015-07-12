@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title!= title
+    title Hello-Express
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
     script(src="/js/script.js")
     link(href="/css/styles.css", rel="stylesheet")
@@ -11,3 +11,12 @@ html
     #container
       p omg!
       button#button alert!
+
+      #user
+        if !username
+          form#username(method="post" input type = "submit")
+            p Hello, what is your name?
+            input#name(name="username")
+            button#nameEntry Enter
+        else
+          p= "Welcome" + ' ' + username + '!!'
